@@ -15,12 +15,12 @@ if (isset($_POST['login'])) {
     $_SESSION['username'] = $r['username'];
     $_SESSION['password'] = $r['password'];
     $_SESSION['sign-in'] = true;
-    echo "<script>alert('Username dan password Benar');document.location.href='dashboard.php';</script>";
+    echo "<script>alert('Signed in successfully');document.location.href='index.html';</script>";
   } else {
 
     echo "
   <script>
- alert('Username dan password salah');
+ alert('Incorrect username and password');
  document.location.href='sign-in.php'; 
  </script>
   
