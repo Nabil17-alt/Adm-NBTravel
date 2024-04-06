@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
     $_SESSION['username'] = $r['username'];
     $_SESSION['password'] = $r['password'];
     $_SESSION['sign-in'] = true;
-    echo "<script>alert('Signed in successfully');document.location.href='index.html';</script>";
+    echo "<script>alert('Signed in successfully');document.location.href='dashboard.html';</script>";
   } else {
 
     echo "
