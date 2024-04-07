@@ -1,15 +1,16 @@
 function validasi() {
     // Mengambil nilai username dari formulir
-    var username = document.getElementById("username").value.toLowerCase();
+    var username = document.getElementById("username").value.trim().toLowerCase();
     
     // Mengambil nilai password dari formulir
-    var password = document.getElementById("password").value.toLowerCase();
+    var password = document.getElementById("password").value.trim();
 
     // Periksa apakah kedua field tidak kosong
-    if (username === "") {
+    if (!username) {
         alert("Username is required!");
         return false;
-    } else if (password === "") {
+    } 
+    if (!password) {
         alert("Password is required!");
         return false;
     }
@@ -45,14 +46,14 @@ function validasi() {
             // Cari pengguna dengan username yang cocok
             var foundUser = users.find(function(user) {
                 // Memeriksa username dan password secara sensitif terhadap huruf
-                return user.username === username && user.password === password;
+                return user.username.toLowerCase() === username && user.password === password;
             });
 
             // Jika pengguna ditemukan, tampilkan pesan berhasil dan redirect ke halaman dashboard
             if (foundUser) {
                 alert('Signed in successfully! Welcome, ' + username + '!');
                 console.log('Redirecting to dashboard.html...');
-                window.location.href = 'dashboard.html';
+                window.location.assign('dashboard.html');
                 return true; // Return true karena validasi berhasil
             } else {
                 alert('Incorrect username or password');

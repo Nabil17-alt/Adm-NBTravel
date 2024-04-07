@@ -1,39 +1,41 @@
-function signIn(username, password) {
-    // Validasi username dan password menggunakan fungsi validasi yang sudah didefinisikan
-    if (!validasi(username, password)) {
-        // Jika validasi gagal, hentikan proses sign-in
-        return;
+function validasi() {
+    var username = document.forms["formsaya"]["username"].value.toLowerCase();
+    var password = document.forms["formsaya"]["password"].value.toLowerCase();
+  
+    // Misalnya, cek apakah kedua field tidak kosong
+    if (username === "") {
+        alert("Username is required!");
+        return false;
+    } else if (password === "") {
+        alert("Password is required!");
+        return false;
     }
-
-    // Mendapatkan data pengguna dari localStorage
+  
+    // Validasi panjang username (minimal 5 karakter)
+    if (username.length < 5) {
+        alert("Username must be at least 5 characters long!");
+        return false;
+    }
+  
+    // Validasi panjang password (minimal 8 karakter)
+    if (password.length < 8) {
+        alert("Password must be at least 8 characters long!");
+        return false;
+    }
+  
+    // Ambil data pengguna yang disimpan di localStorage (jika ada)
     var usersData = localStorage.getItem('users');
-
-    if (usersData) {
-        try {
-            var users = JSON.parse(usersData);
-
-            // Cari pengguna dengan username yang cocok
-            var foundUser = users.find(function(user) {
-                // Memeriksa username dan password secara sensitif terhadap huruf
-                return user.username.toLowerCase() === username.trim().toLowerCase() && user.password === password.trim();
-            });
-
-            if (foundUser) {
-                alert('Signed in successfully! Welcome, ' + foundUser.username + '!');
-                console.log('Redirecting to dashboard.html...');
-                window.location.href = 'dashboard.html';
-            } else {
-                alert('Incorrect username or password');
-            }
-        } catch (error) {
-            console.error("Error parsing user data:", error);
-            alert('An error occurred. Please try again later.');
-        }
-    } else {
-        alert('No user data found');
-    }
+    var users = usersData ? JSON.parse(usersData) : [];
+  
+    // Tambahkan pengguna baru ke dalam array
+    users.push({ username: username, password: password });
+  
+    // Simpan kembali data pengguna ke localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+  
+    // Redirect ke halaman sign-in.html setelah proses sign-up berhasil
+    alert('Signed up successfully! Welcome, ' + username + '!');
+    window.location.href = 'sign-in.html';
+  
+    return false; // Mencegah formulir untuk mengirimkan permintaan secara langsung
 }
-
-// Contoh penggunaan fungsi signIn
-// signIn("username_input", "password_input");
-// Ganti "username_input" dan "password_input" dengan nilai yang sesuai dari input pengguna.
