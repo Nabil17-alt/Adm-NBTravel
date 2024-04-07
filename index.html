@@ -9,9 +9,16 @@
   <!-- notification -->
   <script>
     function validasi() {
-        alert("Username: admin Password: nabil17");
-      }
-  </script>
+        // Lakukan validasi form di sini jika diperlukan
+        
+        // Mengalihkan pengguna ke halaman sign-in.html
+				alert('Username: admin Password: nabil123');
+        window.location.href = "pages/sign-in.html";
+        
+        // Mengembalikan false agar form tidak di-submit secara default
+        return false;
+    }
+</script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/my-login.css">
 </head>
@@ -27,7 +34,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Continue to the website</h4>
-							<form action="Adm-NBTravel/pages/sign-in.html" method="POST" onsubmit="return validasi()" name="formsaya">
+							<form action="#" method="POST" onsubmit="return validasi()" name="formsaya">
 								<div class="form-group m-0">
 									<button type="submit" class="btn btn-dark btn-block">
 										Continue
