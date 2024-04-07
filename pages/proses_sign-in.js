@@ -51,6 +51,7 @@ function validasi() {
             // Jika pengguna ditemukan, tampilkan pesan berhasil dan redirect ke halaman dashboard
             if (foundUser) {
                 alert('Signed in successfully! Welcome, ' + username + '!');
+                console.log('Redirecting to dashboard.html...');
                 window.location.href = 'dashboard.html';
                 return true; // Return true karena validasi berhasil
             } else {
