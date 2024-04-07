@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Adm-NBTravel/assets/img/logo_NBTravel.ico">
+    <title>LSD Adm NBTravel</title>
+</head>
+<body>
+    <div>
+        <h2>Stored Data:</h2>
+        <ul id="user-list"></ul>
+    </div>
+
+    <script>
+        // Ambil data dari localStorage
+        var usersData = localStorage.getItem('users');
+        var users = usersData ? JSON.parse(usersData) : [];
+
+        // Tampilkan data di halaman
+        var userListElement = document.getElementById('user-list');
+
+        // Fungsi untuk menghapus pengguna berdasarkan indeksnya
+        function deleteUser(index) {
+            // Hapus pengguna dari array
+            users.splice(index, 1);
+            // Simpan kembali data pengguna ke localStorage
+            localStorage.setItem('users', JSON.stringify(users));
+            // Hapus semua elemen di dalam daftar pengguna
+            userListElement.innerHTML = '';
+            // Tampilkan kembali data pengguna yang tersisa setelah penghapusan
+            displayUsers();
+        }
+
+        // Fungsi untuk menampilkan data pengguna di halaman
+        function displayUsers() {
+            // Loop melalui setiap pengguna
+            users.forEach(function(user, index) {
+                // Membuat elemen untuk pengguna
+                var userElement = document.createElement('li');
+
+                // Menambahkan nomor urutan ke setiap pengguna
+                var userNumber = index + 1;
+
+                // Membuat elemen untuk nomor urutan dan menambahkannya ke dalam elemen pengguna
+                var numberElement = document.createElement('div');
+                numberElement.textContent = `User ${userNumber}:`;
+                userElement.appendChild(numberElement);
+
+                // Membuat elemen untuk username dan menambahkannya ke dalam elemen pengguna
+                var usernameElement = document.createElement('div');
+                usernameElement.textContent = `Username: ${user.username}`;
+                userElement.appendChild(usernameElement);
+
+                // Membuat elemen untuk password dan menambahkannya ke dalam elemen pengguna
+                var passwordElement = document.createElement('div');
+                passwordElement.textContent = `Password: ${user.password}`;
+                userElement.appendChild(passwordElement);
+
+                // Membuat tombol "Hapus" dan menambahkan fungsinya
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function() {
+                    deleteUser(index);
+                };
+                userElement.appendChild(deleteButton);
+
+                // Menambahkan elemen pengguna ke dalam daftar pengguna
+                userListElement.appendChild(userElement);
+            });
+        }
+
+        // Panggil fungsi untuk menampilkan data pengguna saat halaman dimuat
+        displayUsers();
+    </script>
+</body>
+</html>
