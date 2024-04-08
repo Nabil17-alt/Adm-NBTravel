@@ -53,7 +53,6 @@ function validasi() {
             if (foundUser) {
                 alert('Signed in successfully! Welcome, ' + username + '!');
                 console.log('Redirecting to dashboard.html...');
-                window.location.assign('dashboard.html');
                 return true; // Return true karena validasi berhasil
             } else {
                 alert('Incorrect username or password');
