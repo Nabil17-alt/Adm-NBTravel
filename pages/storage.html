@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <h2>localStorage Data</h2>
+        <h2>Database Adm NBTravel</h2>
         <ul id="user-list"></ul>
     </div>
 
@@ -45,17 +45,17 @@
 
                 // Membuat elemen untuk nomor urutan dan menambahkannya ke dalam elemen pengguna
                 var numberElement = document.createElement('div');
-                numberElement.textContent = `User ${userNumber}:`;
+                numberElement.textContent = `Pengguna ${userNumber}:`;
                 userElement.appendChild(numberElement);
 
                 // Membuat elemen untuk username dan menambahkannya ke dalam elemen pengguna
                 var usernameElement = document.createElement('div');
-                usernameElement.textContent = `Username: ${user.username}`;
+                usernameElement.textContent = `Nama: ${user.username}`;
                 userElement.appendChild(usernameElement);
 
                 // Membuat elemen untuk password dan menambahkannya ke dalam elemen pengguna
                 var passwordElement = document.createElement('div');
-                passwordElement.textContent = `Password: ${user.password}`;
+                passwordElement.textContent = `Kata sandi: ${user.password}`;
                 userElement.appendChild(passwordElement);
 
                 // Membuat tombol "Hapus" dan menambahkan fungsinya

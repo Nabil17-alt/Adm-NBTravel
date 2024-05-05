@@ -4,22 +4,22 @@ function validasi() {
   
     // Misalnya, cek apakah kedua field tidak kosong
     if (username === "") {
-        alert("Username is required!");
+        alert("Nama dibutuhkan!");
         return false;
     } else if (password === "") {
-        alert("Password is required!");
+        alert("Kata sandi dibutuhkan!");
         return false;
     }
   
     // Validasi panjang username (minimal 5 karakter)
     if (username.length < 5) {
-        alert("Username must be at least 5 characters long!");
+        alert("Nama pengguna harus terdiri dari minimal 5 karakter!");
         return false;
     }
   
     // Validasi panjang password (minimal 8 karakter)
     if (password.length < 8) {
-        alert("Password must be at least 8 characters long!");
+        alert("Kata sandi harus terdiri dari minimal 8 karakter!");
         return false;
     }
   
@@ -34,7 +34,7 @@ function validasi() {
     localStorage.setItem('users', JSON.stringify(users));
   
     // Redirect ke halaman sign-in.html setelah proses sign-up berhasil
-    alert('Signed up successfully! Welcome, ' + username + '!');
+    alert("Pendaftaran berhasil! Selamat datang, " + username + "!");
     window.location.href = 'sign-in.html';
   
     return false; // Mencegah formulir untuk mengirimkan permintaan secara langsung
