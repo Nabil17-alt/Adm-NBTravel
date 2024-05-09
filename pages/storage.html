@@ -9,70 +9,107 @@
 </head>
 <body>
     <div>
-        <h2>Database Adm NBTravel</h2>
+        <h2>Database Akun Adm NBTravel</h2>
+        <!-- Daftar pengguna -->
         <ul id="user-list"></ul>
+        
+        <!-- Tabel anggota -->
+        <h2>Database Profile Adm NBTravel</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Jabatan</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="anggota-table">
+            <!-- Data anggota akan ditambahkan di sini -->
+          </tbody>
+        </table>
     </div>
 
     <script>
-        // Ambil data dari localStorage
+        // Ambil data pengguna dari localStorage
         var usersData = localStorage.getItem('users');
         var users = usersData ? JSON.parse(usersData) : [];
 
-        // Tampilkan data di halaman
-        var userListElement = document.getElementById('user-list');
+        // Ambil data anggota dari localStorage
+        var anggotaData = localStorage.getItem('anggotaData');
+        var anggota = anggotaData ? JSON.parse(anggotaData) : [];
 
-        // Fungsi untuk menghapus pengguna berdasarkan indeksnya
+        var userListElement = document.getElementById('user-list');
+        var anggotaTableElement = document.getElementById('anggota-table');
+
+        // Fungsi untuk menghapus pengguna
         function deleteUser(index) {
-            // Hapus pengguna dari array
-            users.splice(index, 1);
-            // Simpan kembali data pengguna ke localStorage
-            localStorage.setItem('users', JSON.stringify(users));
-            // Hapus semua elemen di dalam daftar pengguna
-            userListElement.innerHTML = '';
-            // Tampilkan kembali data pengguna yang tersisa setelah penghapusan
-            displayUsers();
+            users.splice(index, 1); // Hapus pengguna dari array
+            localStorage.setItem('users', JSON.stringify(users)); // Simpan kembali ke LocalStorage
+            displayUsers(); // Tampilkan ulang daftar pengguna
         }
 
-        // Fungsi untuk menampilkan data pengguna di halaman
+        // Fungsi untuk menghapus anggota
+        function deleteAnggota(index) {
+            anggota.splice(index, 1); // Hapus anggota dari array
+            localStorage.setItem('anggotaData', JSON.stringify(anggota)); // Simpan kembali ke LocalStorage
+            displayAnggota(); // Tampilkan ulang tabel anggota
+        }
+
+        // Fungsi untuk menampilkan pengguna
         function displayUsers() {
-            // Loop melalui setiap pengguna
+            userListElement.innerHTML = ''; // Bersihkan daftar pengguna
+
             users.forEach(function(user, index) {
-                // Membuat elemen untuk pengguna
                 var userElement = document.createElement('li');
 
-                // Menambahkan nomor urutan ke setiap pengguna
-                var userNumber = index + 1;
+                // Informasi pengguna
+                userElement.textContent = `Pengguna ${index + 1}: ${user.username} (Kata sandi: ${user.password})`;
 
-                // Membuat elemen untuk nomor urutan dan menambahkannya ke dalam elemen pengguna
-                var numberElement = document.createElement('div');
-                numberElement.textContent = `Pengguna ${userNumber}:`;
-                userElement.appendChild(numberElement);
-
-                // Membuat elemen untuk username dan menambahkannya ke dalam elemen pengguna
-                var usernameElement = document.createElement('div');
-                usernameElement.textContent = `Nama: ${user.username}`;
-                userElement.appendChild(usernameElement);
-
-                // Membuat elemen untuk password dan menambahkannya ke dalam elemen pengguna
-                var passwordElement = document.createElement('div');
-                passwordElement.textContent = `Kata sandi: ${user.password}`;
-                userElement.appendChild(passwordElement);
-
-                // Membuat tombol "Hapus" dan menambahkan fungsinya
+                // Tombol hapus pengguna
                 var deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
+                deleteButton.textContent = 'Hapus';
                 deleteButton.onclick = function() {
                     deleteUser(index);
                 };
-                userElement.appendChild(deleteButton);
 
-                // Menambahkan elemen pengguna ke dalam daftar pengguna
-                userListElement.appendChild(userElement);
+                userElement.appendChild(deleteButton); // Tambahkan tombol ke elemen pengguna
+                userListElement.appendChild(userElement); // Tambahkan pengguna ke daftar
             });
         }
 
-        // Panggil fungsi untuk menampilkan data pengguna saat halaman dimuat
-        displayUsers();
+        // Fungsi untuk menampilkan anggota
+        function displayAnggota() {
+            anggotaTableElement.innerHTML = ''; // Bersihkan tabel anggota
+
+            anggota.forEach(function(anggota, index) {
+                var row = document.createElement('tr');
+
+                // Informasi anggota
+                row.innerHTML = `
+                    <td>${anggota.nama}</td>
+                    <td>${anggota.email}</td>
+                    <td>${anggota.jabatan}</td>
+                `;
+
+                // Tombol hapus anggota
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Hapus';
+                deleteButton.onclick = function() {
+                    deleteAnggota(index);
+                };
+
+                var aksiCell = document.createElement('td');
+                aksiCell.appendChild(deleteButton);
+
+                row.appendChild(aksiCell);
+                anggotaTableElement.appendChild(row); // Tambahkan baris ke tabel anggota
+            });
+        }
+
+        // Panggil fungsi untuk menampilkan data saat halaman dimuat
+        displayUsers(); // Tampilkan daftar pengguna
+        displayAnggota(); // Tampilkan tabel anggota
     </script>
 </body>
 </html>

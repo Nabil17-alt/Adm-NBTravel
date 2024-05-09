@@ -44,6 +44,7 @@ function validasi() {
 
             // Jika pengguna ditemukan, tampilkan pesan berhasil dan redirect ke halaman dashboard
             if (foundUser) {
+                localStorage.setItem("currentUsername", username);
                 alert("Berhasil masuk! Selamat datang, " + username + "!");
                 return true; // Return true karena validasi berhasil
             } else {
