@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['submit']) || $_SESSION['submit'] !== true) {
+    echo "<script>alert('Anda harus login terlebih dahulu!'); document.location.href='sign-in.html'; </script>";
+    exit;
+}
+
+$username = $_SESSION['nama'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,7 +68,7 @@
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="../pages/dashboard.html">
+            <a class="nav-link active" href="../pages/dashboard.php">
               <div
                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center"
               >
@@ -227,9 +237,17 @@
           <li class="nav-item border-start my-0 pt-2">
             <a
               class="nav-link position-relative ms-0 ps-2 py-2"
-              href="../pages/profile.html"
+              href="../pages/profile.php"
             >
               <span class="nav-link-text ms-1">Profil</span>
+            </a>
+          </li>
+          <li class="nav-item border-start my-0 pt-2">
+            <a
+              class="nav-link position-relative ms-0 ps-2 py-2"
+              href="../pages/pesan_masuk.php"
+            >
+              <span class="nav-link-text ms-1">Pesan masuk</span>
             </a>
           </li>
           <li class="nav-item border-start my-0 pt-2">
@@ -496,7 +514,7 @@
           <div class="col-md-12">
             <div class="d-md-flex align-items-center mb-3 mx-2">
               <div class="mb-md-0 mb-3">
-                <h3 class="font-weight-bold mb-0">Halo <span id="usernameDisplay">Admin</span></h3>
+                <h3 id="welcome-message" class="font-weight-bold mb-0">Halo <?= htmlspecialchars($username) ?></h3>
                 <p class="mb-0">Apa kabarmu hari ini?</p>
               </div>
               <button type="button" class="btn btn-sm btn-white btn-icon d-flex align-items-center mb-0 ms-md-auto mb-sm-0 mb-2 me-2" onclick="window.location.href = 'wgoogle.html';">
@@ -848,67 +866,6 @@
                   </div>
                 </div>
                 <div class="pb-3 d-sm-flex align-items-center">
-                  <div
-                    class="btn-group"
-                    role="group"
-                    aria-label="Basic radio toggle button group"
-                  >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="btnradiotable"
-                      id="btnradiotable1"
-                      autocomplete="off"
-                      checked
-                    />
-                    <label class="btn btn-white px-3 mb-0" for="btnradiotable1"
-                      >Semua</label
-                    >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="btnradiotable"
-                      id="btnradiotable2"
-                      autocomplete="off"
-                    />
-                    <label class="btn btn-white px-3 mb-0" for="btnradiotable2"
-                      >Dipantau</label
-                    >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="btnradiotable"
-                      id="btnradiotable3"
-                      autocomplete="off"
-                    />
-                    <label class="btn btn-white px-3 mb-0" for="btnradiotable3"
-                      >Tidak terpantau</label
-                    >
-                  </div>
-                  <div class="input-group w-sm-25 ms-auto">
-                    <span class="input-group-text text-body">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16px"
-                        height="16px"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Search"
-                    />
-                  </div>
                 </div>
               </div>
               <div class="card-body px-0 py-0">

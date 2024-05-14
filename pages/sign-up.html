@@ -115,12 +115,12 @@
                   </p>
                 </div>
                 <div class="card-body">
-                  <form action="#" method="POST" onsubmit="return validasi()" name="formsaya">
-                    <label>Nama</label>
+                  <form action="../pages/proses_sign_up.php" method="POST">
+                    <label for="username">Nama</label>
                     <div class="mb-3">
                       <input type="text" id="username" name="username" class="form-control" placeholder="Nama anda..." aria-label="Name" aria-describedby="name-addon"/>
                     </div>
-                    <label>Kata sandi</label>
+                    <label for="password">Kata sandi</label>
                     <div class="mb-3">
                       <input type="password" id="password" name="password" class="form-control" placeholder="Kata sandi anda..." aria-label="Password" aria-describedby="password-addon"/>
                     </div>
@@ -131,7 +131,7 @@
                       </a>
                     </div>
                     <div class="text-center">
-                      <input type="submit" class="btn btn-dark w-100 mt-4 mb-3" name="login" value="Daftar"/>
+                      <input type="submit" class="btn btn-dark w-100 mt-4 mb-3" name="submit" value="Daftar"/>
                       <button type="button" class="btn btn-white btn-icon w-100 mb-3" onclick="window.location.href = 'wgoogle.html';">
                         <span class="btn-inner--icon me-1">
                           <img class="w-5" src="../assets/img/logos/google-logo.svg" alt="google-logo"/>

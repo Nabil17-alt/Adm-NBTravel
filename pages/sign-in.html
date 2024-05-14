@@ -72,7 +72,7 @@
                                     <p class="mb-0">Silakan masukkan detail Anda.</p>
                                 </div>
                                 <div class="card-body">
-                                    <form action="../pages/dashboard.html" method="POST" onsubmit="return validasi()" id="formsaya">
+                                    <form action="../pages/proses_sign_in.php" method="POST">
                                         <label for="username">Nama</label>
                                         <div class="mb-3">
                                             <input type="text" id="username" name="username" placeholder="Nama anda..." class="form-control" aria-label="Username" aria-describedby="name-addon">
@@ -86,7 +86,7 @@
                                             <a href="javascript:;" class="text-xs font-weight-bold">Lihat kata sandi <i class="fa fa-eye" id="togglePassword"></i></a>
                                         </div>
                                         <div class="text-center">
-                                            <input type="submit" class="btn btn-dark w-100 mt-4 mb-3" name="login" value="Masuk"/>
+                                            <input type="submit" class="btn btn-dark w-100 mt-4 mb-3" name="submit" value="Masuk"/>
                                             <button type="button" class="btn btn-white btn-icon w-100 mb-3" onclick="window.location.href = 'wgoogle.html';">
                                                 <span class="btn-inner--icon me-1">
                                                     <img class="w-5" src="../assets/img/logos/google-logo.svg" alt="google-logo" />

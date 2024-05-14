@@ -55,7 +55,7 @@
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="../pages/dashboard.html">
+            <a class="nav-link" href="../pages/dashboard.php">
               <div
                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center"
               >
@@ -224,7 +224,7 @@
           <li class="nav-item border-start my-0 pt-2">
             <a
               class="nav-link position-relative ms-0 ps-2 py-2"
-              href="../pages/profile.html"
+              href="../pages/profile.php"
             >
               <span class="nav-link-text ms-1">Profil</span>
             </a>
@@ -255,7 +255,7 @@
               class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5"
             >
               <li class="breadcrumb-item text-sm">
-                <a class="opacity-5 text-dark" href="../pages/dashboard.html"
+                <a class="opacity-5 text-dark" href="../pages/dashboard.php"
                   >Dasbor</a
                 >
               </li>
@@ -398,7 +398,8 @@
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                           <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold">Laporan baru</span> oleh Google
+                            <span class="font-weight-bold">Laporan baru</span>
+                            oleh Google
                           </h6>
                           <p
                             class="text-xs text-secondary mb-0 d-flex align-items-center"
@@ -503,181 +504,258 @@
                     <p class="text-sm">Lihat informasi tentang semua anggota</p>
                   </div>
                   <div class="ms-auto d-flex">
-                    <button type="button" class="btn btn-sm btn-white me-2" onclick="window.location.href = 'wgoogle.html';">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-white me-2"
+                      onclick="window.location.href = 'wgoogle.html';"
+                    >
                       Lihat semua
                     </button>
-                    <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2" data-bs-toggle="modal" data-bs-target="#modalTambahkanAnggota">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalTambahkanAnggota"
+                    >
                       <span class="btn-inner--icon">
-                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="d-block me-2">
-                          <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"/>
+                        <svg
+                          width="16"
+                          height="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          class="d-block me-2"
+                        >
+                          <path
+                            d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"
+                          />
                         </svg>
                       </span>
                       <span class="btn-inner--text">Tambahkan anggota</span>
                     </button>
                   </div>
                 </div>
-                <div class="modal fade" id="modalTambahkanAnggota" tabindex="-1" aria-labelledby="modalTambahkanAnggotaLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalTambahkanAnggotaLabel">Tambahkan Anggota</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <!-- Formulir untuk Menambahkan Anggota -->
-        <form id="formTambahkanAnggota">
-          <div class="mb-3">
-            <label for="namaAnggota" class="form-label">Nama</label>
-            <input type="text" class="form-control" id="namaAnggota" placeholder="Masukkan Nama Anggota" required>
-          </div>
-          <div class="mb-3">
-            <label for="emailAnggota" class="form-label">Email</label>
-            <input type="email" class="form-control" id="emailAnggota" placeholder="Masukkan Email Anggota" required>
-          </div>
-          <div class="mb-3">
-            <label for="jabatanAnggota" class="form-label">Jabatan</label>
-            <input type="text" class="form-control" id="jabatanAnggota" placeholder="Masukkan Jabatan Anggota" required>
-          </div>
-          <div class="mb-3">
-          <label for="fileGambar" class="form-label">Unggah Gambar</label>
-          <input type="file" class="form-control" id="fileGambar" accept="image/*">
-          </div>
-          <div class="mb-3 text-center">
-            <img id="gambarPratinjau" alt="Pratinjau Gambar" style="display: none; max-height: 200px;">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" id="simpan">Simpan</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modalEditAnggota" tabindex="-1" aria-labelledby="modalEditAnggotaLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalEditAnggotaLabel">Edit Anggota</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <!-- Formulir untuk Mengedit Anggota -->
-            <form id="formEditAnggota">
-              <div class="mb-3">
-                <label for="editNamaAnggota" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="editNamaAnggota" required>
-              </div>
-              <div class="mb-3">
-                <label for="editEmailAnggota" class="form-label">Email</label>
-                <input type="email" class="form-control" id="editemailAnggota"  required>
-              </div>
-              <div class="mb-3">
-                <label for="editJabatanAnggota" class="form-label">Jabatan</label>
-                <input type="text" class="form-control" id="editJabatanAnggota" required>
-              </div>
-              <div class="mb-3">
-                <label for="editFileGambar" class="form-label">Unggah Gambar</label>
-                <input type="file" class="form-control" id="editFileGambar" accept="image/*">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <button type="button" class="btn btn-primary" id="simpanEdit">Simpan</button>
-          </div>
-        </div>
-      </div>
-    </div>
-              </div>
-              <div class="card-body px-0 py-0">
                 <div
-                  class="border-bottom py-3 px-3 d-sm-flex align-items-center"
+                  class="modal fade"
+                  id="modalTambahkanAnggota"
+                  tabindex="-1"
+                  aria-labelledby="modalTambahkanAnggotaLabel"
+                  aria-hidden="true"
                 >
-                  <div
-                    class="btn-group"
-                    role="group"
-                    aria-label="Basic radio toggle button group"
-                  >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="btnradiotable"
-                      id="btnradiotable1"
-                      autocomplete="off"
-                      checked
-                    />
-                    <label class="btn btn-white px-3 mb-0" for="btnradiotable1"
-                      >Semua</label
-                    >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="btnradiotable"
-                      id="btnradiotable2"
-                      autocomplete="off"
-                    />
-                    <label class="btn btn-white px-3 mb-0" for="btnradiotable2"
-                      >Dipantau</label
-                    >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="btnradiotable"
-                      id="btnradiotable3"
-                      autocomplete="off"
-                    />
-                    <label class="btn btn-white px-3 mb-0" for="btnradiotable3"
-                      >Tidak terpantau</label
-                    >
-                  </div>
-                  <div class="input-group w-sm-25 ms-auto">
-                    <span class="input-group-text text-body">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16px"
-                        height="16px"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Search"
-                    />
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalTambahkanAnggotaLabel">
+                          Tambahkan Anggota
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="formTambahkanAnggota">
+                          <div class="mb-3">
+                            <label for="namaAnggota" class="form-label"
+                              >Nama</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="namaAnggota"
+                              placeholder="Masukkan Nama Anggota"
+                              required
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label for="emailAnggota" class="form-label"
+                              >Email</label
+                            >
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="emailAnggota"
+                              placeholder="Masukkan Email Anggota"
+                              required
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label for="jabatanAnggota" class="form-label"
+                              >Jabatan</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="jabatanAnggota"
+                              placeholder="Masukkan Jabatan Anggota"
+                              required
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label for="fileGambar" class="form-label"
+                              >Unggah Gambar</label
+                            >
+                            <input
+                              type="file"
+                              class="form-control"
+                              id="fileGambar"
+                              accept="image/*"
+                            />
+                          </div>
+                          <div class="mb-3 text-center">
+                            <img
+                              id="gambarPratinjau"
+                              alt="Pratinjau Gambar"
+                              style="display: none; max-height: 200px"
+                            />
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Batal
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          id="simpan"
+                        >
+                          Simpan
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <div
+                  class="modal fade"
+                  id="modalEditAnggota"
+                  tabindex="-1"
+                  aria-labelledby="modalEditAnggotaLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditAnggotaLabel">
+                          Edit Anggota
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="formEditAnggota">
+                          <div class="mb-3">
+                            <label for="editNamaAnggota" class="form-label"
+                              >Nama</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="editNamaAnggota"
+                              required
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label for="editEmailAnggota" class="form-label"
+                              >Email</label
+                            >
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="editemailAnggota"
+                              required
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label for="editJabatanAnggota" class="form-label"
+                              >Jabatan</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="editJabatanAnggota"
+                              required
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label for="editFileGambar" class="form-label"
+                              >Unggah Gambar</label
+                            >
+                            <input
+                              type="file"
+                              class="form-control"
+                              id="editFileGambar"
+                              accept="image/*"
+                            />
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Batal
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          id="simpanEdit"
+                        >
+                          Simpan
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body px-0 py-0">
                 <div class="table-responsive p-0">
-                  <table class="table align-items-center mb-0" id="tabelAnggota">
+                  <table
+                    class="table align-items-center mb-0"
+                    id="tabelAnggota"
+                  >
                     <thead class="bg-gray-100">
                       <tr>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7">
+                        <th
+                          class="text-secondary text-xs font-weight-semibold opacity-7"
+                        >
                           Anggota
                         </th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                        <th
+                          class="text-secondary text-xs font-weight-semibold opacity-7 ps-2"
+                        >
                           Jabatan
                         </th>
-                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                        <th
+                          class="text-center text-secondary text-xs font-weight-semibold opacity-7"
+                        >
                           Status
                         </th>
-                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                        <th
+                          class="text-center text-secondary text-xs font-weight-semibold opacity-7"
+                        >
                           Awal bekerja
                         </th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
                     </thead>
-                    <tbody>
-
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
                 <div class="border-top py-3 px-3 d-flex align-items-center">
@@ -685,8 +763,18 @@
                     Halaman 1 dari 1
                   </p>
                   <div class="ms-auto">
-                    <button class="btn btn-sm btn-white mb-0" onclick="window.location.href = 'wgoogle.html';" >Sebelumnya</button>
-                    <button class="btn btn-sm btn-white mb-0" onclick="window.location.href = 'wgoogle.html';" >Selanjutnya</button>
+                    <button
+                      class="btn btn-sm btn-white mb-0"
+                      onclick="window.location.href = 'wgoogle.html';"
+                    >
+                      Sebelumnya
+                    </button>
+                    <button
+                      class="btn btn-sm btn-white mb-0"
+                      onclick="window.location.href = 'wgoogle.html';"
+                    >
+                      Selanjutnya
+                    </button>
                   </div>
                 </div>
               </div>
@@ -731,7 +819,7 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
-    
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/edittables.js"></script>

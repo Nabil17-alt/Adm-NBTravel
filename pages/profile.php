@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (!isset($_SESSION['submit']) || $_SESSION['submit'] !== true) {
+    echo "<script>alert('Anda harus login terlebih dahulu!'); document.location.href='sign-in.html'; </script>";
+    exit;
+}
+
+include "../pages/koneksi.php";
+$username = $_SESSION['nama'];
+$query = mysqli_query($koneksi, "SELECT * FROM profil WHERE username='$username'");
+$user = mysqli_fetch_assoc($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +45,7 @@
         </nav>
         <ul class="navbar-nav d-none d-lg-flex">
           <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
-            <a href="../pages/dashboard.html" class="nav-link text-white p-0">
+            <a href="../pages/dashboard.php" class="nav-link text-white p-0">
               Dasbor
             </a>
           </li>
@@ -138,7 +151,7 @@
       <div class="container pb-3 pt-3">
         <ul class="navbar-nav d-none d-lg-flex">
           <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-            <a href="../pages/profile.html" class="nav-link text-white p-0">
+            <a href="../pages/profile.php" class="nav-link text-white p-0">
               Profil
             </a>
           </li>
@@ -172,13 +185,9 @@
           </div>
           <div class="col-auto my-auto">
             <div class="h-100">
-              <h3 class="mb-0 font-weight-bold"><span id="usernameDisplay">Muhammad Nabil</span></h3>
-              <p class="mb-0"><span id="usernameDisplay">realmuhammadnabil</span>@gmail.com</p>
+              <h3 class="mb-0 font-weight-bold"><?= htmlspecialchars($username) ?></h3>
+              <p class="mb-0"><span id="usernameDisplay"><?= $user['email'] ?></p>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
-            <a href="wgoogle.html" class="btn btn-sm btn-white">Batal</a>
-            <a href="wgoogle.html" class="btn btn-sm btn-dark">Simpan</a>
           </div>
         </div>
       </div>
@@ -246,77 +255,74 @@
                   <p class="text-sm mb-1">Edit informasi tentang Anda.</p>
                 </div>
                 <div class="col-md-4 col-3 text-end">
-                  <button type="button" class="btn btn-white btn-icon px-2 py-2" data-toggle="modal" data-target="#editProfileModal">
-                    Edit
+                  <button type="button" class="btn btn-white btn-icon px-2 py-2" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                      Edit 
                   </button>
                 </div>
               </div>
-              <!-- Modal Edit Profil -->
+              <!-- Modal -->
               <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-header">
                               <h5 class="modal-title" id="editProfileModalLabel">Edit Profil</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                              <form id="editProfileForm">
-                                  <div class="form-group">
-                                    <label for="editFirstName">Nama depan</label>
-                                    <input type="text" class="form-control" id="editFirstName" value="Muhammad">
+                              <form id="editProfileForm" method="post" action="proses_edit_profil.php">
+                                  <div class="mb-3">
+                                      <label for="editUsername" class="form-label">Nama</label>
+                                      <input type="text" class="form-control" id="editUsername" name="username" value="<?= htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') ?>" required>
                                   </div>
-                                  <div class="form-group">
-                                    <label for="editLastName">Nama belakang</label>
-                                    <input type="text" class="form-control" id="editLastName" value="Nabil">
+                                  <div class="mb-3">
+                                      <label for="editEmail" class="form-label">Email</label>
+                                      <input type="email" class="form-control" id="editEmail" name="email" value="<?= htmlspecialchars($user['email'], ENT_QUOTES, 'UTF-8') ?>" required>
                                   </div>
-                                  <div class="form-group">
-                                    <label for="editPhoneNumber">Nomor HP</label>
-                                    <input type="text" class="form-control" id="editPhoneNumber" value="+6282286923525">
+                                  <div class="mb-3">
+                                      <label for="editPhone" class="form-label">Nomor HP</label>
+                                      <input type="text" class="form-control" id="editPhone" name="phone" value="<?= htmlspecialchars($user['phone'], ENT_QUOTES, 'UTF-8') ?>" required>
                                   </div>
-                                  <div class="form-group">
-                                    <label for="editStudent">Pendidikan</label>
-                                    <input type="text" class="form-control" id="editStudent" value="Mahasiswa">
+                                  <div class="mb-3">
+                                      <label for="editEducation" class="form-label">Pendidikan</label>
+                                      <input type="text" class="form-control" id="editEducation" name="education" value="<?= htmlspecialchars($user['education'], ENT_QUOTES, 'UTF-8') ?>" required>
                                   </div>
-                                  <div class="form-group">
-                                    <label for="editLocation">Lokasi</label>
-                                    <input type="text" class="form-control" id="editLocation" value="Indonesia">
+                                  <div class="mb-3">
+                                      <label for="editLocation" class="form-label">Lokasi</label>
+                                      <input type="text" class="form-control" id="editLocation" name="location" value="<?= htmlspecialchars($user['location'], ENT_QUOTES, 'UTF-8') ?>" required>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                      <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                   </div>
                               </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-primary" id="saveChanges">Simpan</button>
                           </div>
                       </div>
                   </div>
               </div>
-            </div>
-            <div class="card-body p-3">
+              <div class="card-body p-3">
               <p class="text-sm mb-4">
                 Menghadapi setiap kesalahan merupakan tantangan menarik untuk menciptakan solusi baru. Kode adalah kanvasnya, dan sayalah senimannya!!
               </p>
               <ul class="list-group">
                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm">
-                    <span class="text-secondary">Nama depan:</span> &nbsp; 
-                    <span id="firstName">Muhammad</span>
+                    <span class="text-secondary">Nama:</span> &nbsp; 
+                    <span id="username"><?= $user['username'] ?></span>
                 </li>
                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                    <span class="text-secondary">Nama belakang:</span> &nbsp; 
-                    <span id="lastName">Nabil</span>
+                    <span class="text-secondary">Email:</span> &nbsp; 
+                    <span id="email"><?= $user['email'] ?></span>
                 </li>
                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                     <span class="text-secondary">Nomor HP:</span> &nbsp; 
-                    <span id="phoneNumber">+6282286923525</span>
+                    <span id="phone"><?= $user['phone'] ?></span>
                 </li>
                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                     <span class="text-secondary">Pendidikan:</span> &nbsp; 
-                    <span id="student">Mahasiswa</span>
+                    <span id="education"><?= $user['education'] ?></span>
                 </li>
                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                     <span class="text-secondary">Lokasi:</span> &nbsp; 
-                    <span id="location">Indonesia</span>
+                    <span id="location"><?= $user['location'] ?></span>
                 </li>
                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                   <span class="text-secondary">Sosial:</span> &nbsp;
@@ -331,66 +337,7 @@
                   </a>
                 </li>
               </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-xl-4 mb-4">
-          <div class="card border shadow-xs h-100">
-            <div class="card-header pb-0 p-3">
-              <div class="row mb-sm-0 mb-2">
-                <div class="col-md-8 col-9">
-                  <h6 class="mb-0 font-weight-semibold text-lg">Obrolan internal</h6>
-                  <p class="text-sm mb-0">/saluran pemasaran</p>
-                </div>
-                <div class="col-md-4 col-3 text-end">
-                  <button type="button" class="btn btn-white btn-icon px-2 py-2" onclick="window.location.href = 'wgoogle.html';">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10.5 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm0 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm0 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
-                    </svg>
-                  </button>
-                </div>
               </div>
-            </div>
-            <div class="card-body p-3 pt-0">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                  <div class="avatar avatar-sm rounded-circle me-2">
-                    <img src="../assets/img/tim4.jpg" alt="kal" class="w-100">
-                  </div>
-                  <div class="d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm font-weight-semibold">Rusdil</h6>
-                    <p class="mb-0 text-sm text-secondary">Hai! Saya memerlukan informasi lebih lanjut...</p>
-                  </div>
-                  <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                    <span class="visually-hidden">Online</span>
-                  </span>
-                </li>
-                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                  <div class="avatar avatar-sm rounded-circle me-2">
-                    <img src="../assets/img/tim3.jpg" alt="kal" class="w-100">
-                  </div>
-                  <div class="d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm font-weight-semibold">Farlyan</h6>
-                    <p class="mb-0 text-sm text-secondary">Hai, Nabil!</p>
-                  </div>
-                  <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                    <span class="visually-hidden">Online</span>
-                  </span>
-                </li>
-                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                  <div class="avatar avatar-sm rounded-circle me-2">
-                    <img src="../assets/img/tim2.jpg" alt="kal" class="w-100">
-                  </div>
-                  <div class="d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm font-weight-semibold">Dika</h6>
-                    <p class="mb-0 text-sm text-secondary">Terima kasih banyak!</p>
-                  </div>
-                  <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                    <span class="visually-hidden">Online</span>
-                  </span>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       <footer class="footer pt-3  ">
@@ -421,11 +368,15 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  <script>
+    document.getElementById('editProfileForm').addEventListener('submit', function(event) {
+        // Anda bisa menambahkan validasi tambahan di sini jika diperlukan
+    });
+  </script>
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
-  <script src="../js/admin.js"></script>
-  <script src="../js/editprofil.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
